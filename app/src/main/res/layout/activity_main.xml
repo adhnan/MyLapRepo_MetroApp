@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:layout_marginTop="20dp"
+    android:layout_marginStart="20dp">
+
+    <ImageView
+        android:id="@+id/metroLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="178dp"
+        android:layout_marginStart="30dp"
+        android:contentDescription="metroimage"
+        android:src="@drawable/metro_logo" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/metroLogo"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="33dp"
+        android:text="Login"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/etEmailId"
+        android:layout_width="651dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvLogin"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="91dp"
+        android:ems="10"
+        android:hint="Enter_your_email_id"
+        android:inputType="textEmailAddress"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etEmailId"
+        android:layout_alignStart="@+id/etEmailId"
+        android:layout_alignEnd="@+id/etEmailId"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="0dp"
+        android:ems="10"
+        android:hint="Eter_your_password"
+        android:inputType="textPassword" />
+
+    <RadioGroup
+        android:id="@+id/rdButton"
+        android:layout_width="364dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/etPassword"
+        android:layout_alignEnd="@+id/etPassword"
+        android:layout_alignBottom="@+id/etPassword"
+        android:layout_marginStart="-17dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="-44dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rBtnSavePassword"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rdButton"
+            android:layout_weight="1"
+            android:text="save_password" />
+
+        <RadioButton
+            android:id="@+id/rBtnForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="forget_password" />
+    </RadioGroup>
+
+    <ImageButton
+        android:id="@+id/btnLogin"
+        android:layout_width="86dp"
+        android:layout_height="49dp"
+        android:layout_alignBottom="@+id/rdButton"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="-109dp"
+        android:contentDescription="login"
+        app:srcCompat="@android:drawable/arrow_down_float" />
+
+</RelativeLayout>
