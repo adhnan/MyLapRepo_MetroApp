@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
@@ -15,11 +16,12 @@ import com.example.metrocc_app.R;
 
 public class DialogFragmentController extends DialogFragment {
 
-    public static DialogFragmentController newInstance(String title, String content) {
+    public static DialogFragmentController newInstance(String title, String content, int DialogBoxNum) {
         DialogFragmentController f = new DialogFragmentController();
         Bundle args = new Bundle();
         args.putString("title", title);
         args.putString("content", content);
+        args.putInt("num", DialogBoxNum);
         f.setArguments(args);
         return f;
     }
@@ -31,28 +33,54 @@ public class DialogFragmentController extends DialogFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dialog_view, container, false);
 
-        Button btnContinue = (Button) v.findViewById(R.id.btnContinue);
-        Button btnGoBack = (Button) v.findViewById(R.id.btnGoBack);
+        int dialogNum;
+        Button btnLeft = (Button) v.findViewById(R.id.btnContinue);
+        Button btnRight = (Button) v.findViewById(R.id.btnGoBack);
         TextView title = v.findViewById(R.id.tvForgotpassword);
         TextView content = v.findViewById(R.id.tvForgotPasswordContent);
 
-        if (getArguments() != null) {
-            title.setText(getArguments().getString("title"));
-            content.setText(getArguments().getString("content"));
-            if (title.getText().toString().equals("Forgot Password")) {
-                title.setTextColor(Color.YELLOW);
-                btnContinue.setVisibility(View.GONE);
-            }
+        // Getting the arguments
+        if (getArguments() == null) {
+            throw new AssertionError();
         }
-        btnGoBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+
+        dialogNum = getArguments().getInt("DialogBoxNum");
+        title.setText(getArguments().getString("title"));
+        content.setText(getArguments().getString("content"));
+
+        switch (dialogNum) {
+
+
+            case 1:
+                title.setTextColor(Color.YELLOW);
+                btnLeft.setVisibility(View.GONE);
+                btnRight.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dismiss();
+                    }
+                });
+                break;
+
+            case 2:
+                title.setTextColor(Color.YELLOW);
+                btnRight.setText("EndSession");
+                btnRight.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dismiss();
+                    }
+                });
+                 break;
+
+            case 3:
+
+
+        }
+
         return v;
     }
 }

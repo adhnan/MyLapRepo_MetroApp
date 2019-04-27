@@ -1,9 +1,4 @@
-package com.example.metrocc_app;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-
-import android.content.Intent;
+package com.example.metrocc_app;import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,18 +6,16 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.example.metrocc_app.DialogBox.DialogContent;
+import com.example.metrocc_app.DialogBox.Dialogs;
 import com.example.metrocc_app.Login.Presenter.ILoginPresenter;
 import com.example.metrocc_app.Login.Presenter.LoginPresenter;
 import com.example.metrocc_app.Login.view.ILoginView;
 
-public class MainActivity extends AppCompatActivity implements ILoginView {
+public class MainActivity extends Dialogs implements ILoginView {
     EditText email, password;
     ImageButton button;
     RadioButton radioButton;
-
     ILoginPresenter loginPresenter;
-    DialogContent dialogContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements ILoginView {
         setContentView(R.layout.activity_main);
 
         loginPresenter = new LoginPresenter(this);
-        dialogContent = new DialogContent();
 
         email = (EditText) findViewById(R.id.etEmailId);
         password = (EditText) findViewById(R.id.etPassword);
@@ -49,13 +41,7 @@ public class MainActivity extends AppCompatActivity implements ILoginView {
         radioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    dialogContent.showDialog();
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
+              showPopup(2);
              }
         });
 
